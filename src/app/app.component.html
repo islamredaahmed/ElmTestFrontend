@@ -1,0 +1,41 @@
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="distance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScrollDown()"
+>
+
+<div style="padding: 5%;" >
+  <!-- Search form -->
+  <div class="md-form mt-0">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" #filter>
+    <button (click)="search(filter.value)">Search</button>
+  </div>
+<br/>
+
+  <div *ngFor="let book of bookList">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{book.bookInfo.bookTitle}}</mat-card-title>
+        <mat-card-subtitle>{{book.bookInfo.author}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="book.bookInfo.coverBase64" height="300px"  alt="Photo">
+      <mat-card-content>
+        <p>
+          {{book.bookInfo.bookDescription}}
+        </p>
+      </mat-card-content>
+      <mat-card-content>
+        <p>
+          {{book.lastModified | date: "dd/MM/yyyy"}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <br/>
+  </div>
+
+</div>
+
+
+</div>
